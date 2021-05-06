@@ -5,43 +5,9 @@
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
 | nickname | string | null: false |
-| email    | string | null: false |
+| email    | string | null: false , uniquness:true |
 | password | string | null: false |
-
-
-### Association
-
-- has_many : items
-- belongs_to : profiles
-- has_many : cards
-- has_many : shipping_addresses
-
-
-
-## items テーブル
-| Column            | Type    | Options     |
-| ----------------- | ------- | ----------- |
-| image             |         | null: false |
-| item_name         | string  | null: false |
-| category          | string  | null: false |
-| description       | text    | null: false |
-| delivery_change   | integer | null: false |
-| delivery_time     | datetime| null: false |
-| price             | integer | null: false |
-| fee               | integer | null: false |
-| profit            | integer | null: false |
-
-
-### Association
-
-- belongs_to : users
-
-
-
-## profiles テーブル
-
-| Column          | Type     | Options     |
-| --------------- | -------- | ----------- |
+| encrypted_password | string | null: false |
 | first_name      | string   | null: false |
 | last_name       | string   | null: false |
 | first_name_kana | string   | null: false |
@@ -51,22 +17,29 @@
 
 ### Association
 
-- belongs_to : users
+- has_many : items
+- has_many : shipping_addresses
+- belongs_to : purchases
 
 
 
-## cards テーブル
-
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| card_info     | integer | null: false |
-| limit         | integer | null: false |
-| security_code | integer | null: false |
+## items テーブル
+| Column            | Type    | Options     |
+| ----------------- | ------- | ----------- |
+| item_name         | string  | null: false |
+| category          | string  | null: false |
+| description       | text    | null: false |
+| delivery_change   | integer | null: false |
+| delivery_time     | datetime| null: false |
+| price             | integer | null: false |
+| status            | string  | null: false |
+| user_id          | references | foreign_key: true |
 
 
 ### Association
 
 - belongs_to : users
+- belongs_to : purchases
 
 
 
@@ -84,4 +57,19 @@
 
 ### Association
 
-- belongs_to : user
+- belongs_to : users
+
+
+
+## purchases テーブル
+
+| Column            | Type    | Options     |
+| ----------------- | ------- | ----------- |
+| user_id          | references | foreign_key: true |
+| items_id          | references | foreign_key: true |
+
+
+### Association
+
+- belongs_to : users
+- belongs_to : items
