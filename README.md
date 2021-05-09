@@ -5,21 +5,19 @@
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
 | nickname | string | null: false |
-| email    | string | null: false , uniquness:true |
-| password | string | null: false |
+| email    | string | null: false , unique:true |
 | encrypted_password | string | null: false |
 | first_name      | string   | null: false |
 | last_name       | string   | null: false |
 | first_name_kana | string   | null: false |
 | last_name_kana  | string   | null: false |
-| birthday        | datetime | null: false |
+| birthday        | date | null: false |
 
 
 ### Association
 
 - has_many : items
-- has_many : shipping_addresses
-- belongs_to : purchases
+- has_many : purchases
 
 
 
@@ -27,19 +25,20 @@
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
 | item_name         | string  | null: false |
-| category          | string  | null: false |
+| category_id        | integer | null: false |
 | description       | text    | null: false |
-| delivery_change   | integer | null: false |
-| delivery_time     | datetime| null: false |
+| delivery_change_id   | integer | null: false |
+| delivery_time_id     | integer| null: false |
 | price             | integer | null: false |
-| status            | string  | null: false |
-| user_id          | references | foreign_key: true |
+| status_id           | integer  | null: false |
+| prefecture_id        | integer  | null: false |
+| user          | references | foreign_key: true |
 
 
 ### Association
 
-- belongs_to : users
-- belongs_to : purchases
+- belongs_to : user
+- has_one : purchase
 
 
 
@@ -47,29 +46,31 @@
 
 | Column       | Type         | Options     |
 | ------------ | ------------ | ----------- |
-| postal_code  | integer      | null: false |
-| prefecture   | string       | null: false |
+| postal_code  | string     | null: false |
+| prefecture_id   | integer    | null: false |
 | city         | string       | null: false |
-| address      | integer      | null: false |
+| address      | string     | null: false |
 | building     | string       |             |
-| tel          | integer      | null: false |
+| tel          | string   | null: false |
+| purchase | references | foreign_key: true |
 
 
 ### Association
 
-- belongs_to : users
-
+- belongs_to : purchase
 
 
 ## purchases テーブル
 
 | Column            | Type    | Options     |
 | ----------------- | ------- | ----------- |
-| user_id          | references | foreign_key: true |
-| items_id          | references | foreign_key: true |
+| user      | references | foreign_key: true |
+| item     | references | foreign_key: true |
 
 
 ### Association
 
-- belongs_to : users
-- belongs_to : items
+- belongs_to : user
+- belongs_to : item
+- belongs_to : shipping_address
+
