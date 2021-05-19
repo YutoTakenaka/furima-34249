@@ -119,8 +119,4 @@ RSpec.describe User, type: :model do
 
   end
 
-  describe 'ユーザーログイン' do
-     # ユーザーログインについてのテストコードを記述します  
-  end
-
 end
