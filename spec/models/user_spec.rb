@@ -93,7 +93,7 @@ RSpec.describe User, type: :model do
       it 'last_nameは漢字・平仮名・カタカナ以外では登録できない' do
         @user.last_name = 'okamoto'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include("Last name is invalid")
       end
 
 
