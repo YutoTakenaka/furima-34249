@@ -18,6 +18,7 @@ class Item < ApplicationRecord
   belongs_to :status
 
   with_options presence: true do
+    validates :image 
     validates :item_name ,length: { maximum: 40 }
     validates :description,length: { maximum: 1000 }
     validates :category_id
