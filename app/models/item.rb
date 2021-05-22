@@ -19,7 +19,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :item_name ,length: { maximum: 40 }
-    validates :discription,length: { maximum: 1000 }
+    validates :description,length: { maximum: 1000 }
     validates :category_id
     validates :status_id
     validates :delivery_change_id
