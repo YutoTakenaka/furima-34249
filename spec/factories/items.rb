@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    item_name                   { Faker::Movie.title }
-    description                 { Faker::Quote.famous_last_words }
+    item_name                   { Faker::Lorem.characters(number: 10) }
+    description                 { Faker::Lorem.sentence(word_count: 3) }
     category_id                 { Faker::Number.between(from: 2, to: 11) }
     status_id                   { Faker::Number.between(from: 2, to: 7) }
     delivery_change_id          { Faker::Number.between(from: 2, to: 3) }
