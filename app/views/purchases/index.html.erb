@@ -27,6 +27,8 @@
       </p>
     </div>
 
+    <%= render 'error_messages', model: @purchase_address %>
+
     <%= form_with model: @purchase_address, url: item_purchases_path, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
