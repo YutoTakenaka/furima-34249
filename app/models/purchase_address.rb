@@ -6,7 +6,7 @@ class PurchaseAddress
     validates :postal_code ,format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :city
     validates :address
-    validates :tel ,format: {with: /^[0-9]+$/, message: "is invalid. Can't include hyphen(-)"} ,length: {maximum: 11, minimum: 10 }
+    validates :tel ,format: {with: /\A\d{10,11}\z/, message: "is invalid. Can't include hyphen(-)"}
     validates :user_id
     validates :purchase_id
     validates :item_id
