@@ -27,7 +27,6 @@
 
  <% if user_signed_in?  #かつ商品が出品中である%>
   <% if @item.purchase.present? %>
-    <%=  %>
   <% elsif current_user.id == @item.user_id %>
     <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
