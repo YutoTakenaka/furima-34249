@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe PurchaseAddress, type: :model do
   describe '購入情報の保存' do
     before do
-      # binding.pry
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
       @purchase_address = FactoryBot.build( :purchase_address,user_id: @user.id, item_id: @item.id )
@@ -76,11 +75,11 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
-      # it 'purchaseと結びついていないと保存できない' do
-      #   @purchase_address.purchase_id = nil
-      #   @purchase_address.valid?
-      #   expect(@purchase_address.errors.full_messages).to include("Purchase can't be blank")
-      # end
+      it 'tokenが空では保存できない' do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
