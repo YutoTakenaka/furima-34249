@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: :index
+  before_action :move_to_index, only: [:new ,:create]
 
   def index
     @purchase_address = PurchaseAddress.new
@@ -36,5 +37,13 @@ class PurchasesController < ApplicationController
         card: purchase_params[:token],
         currency: 'jpy'
       )
+  end
+
+  def move_to_index
+    redirect_to action: :index unless current_user.id == @item.user_id 
+    
+    if @item.purchase.present?
+      redirect_to action: :index
+    end
   end
 end
