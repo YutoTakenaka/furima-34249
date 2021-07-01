@@ -52,9 +52,7 @@ def set_item
 end
 
 def move_to_index
-  redirect_to action: :index unless current_user.id == @item.user_id 
-  
-  if @item.purchase.present?
-    redirect_to action: :index
-  end
+  redirect_to action: :index unless current_user.id == @item.user_id
+
+  redirect_to action: :index if @item.purchase.present?
 end

@@ -5,7 +5,7 @@ RSpec.describe PurchaseAddress, type: :model do
     before do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
-      @purchase_address = FactoryBot.build( :purchase_address,user_id: @user.id, item_id: @item.id )
+      @purchase_address = FactoryBot.build(:purchase_address, user_id: @user.id, item_id: @item.id)
       sleep 0.1
     end
 
@@ -28,7 +28,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postal_codeにハイフンが含まれていないと保存できない' do
         @purchase_address.postal_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが0では保存できない' do
         @purchase_address.prefecture_id = 0
